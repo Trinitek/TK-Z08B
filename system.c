@@ -175,7 +175,7 @@ void sendString(uint8_t string[]) {
 }
 
 /**
- * Get a character sent over RS-232 and is waiting in the receiver FIFO
+ * Get a character sent over RS-232 that is waiting in the receiver FIFO
  * @return character
  */
 uint8_t getSerial(void) {
