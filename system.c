@@ -153,7 +153,7 @@ void initSerial(void) {
  * @param character
  * @return true if successful
  */
-bool sendSerial(char character) {
+bool sendSerial(uint8_t character) {
     if (TXSTAbits.TRMT) {
         TXREG = character;
         return true;
@@ -178,7 +178,7 @@ void sendString(uint8_t string[]) {
  * Get a character sent over RS-232 and is waiting in the receiver FIFO
  * @return character
  */
-char getSerial(void) {
+uint8_t getSerial(void) {
     // If a byte was not received, return 0
     if (PIR1bits.RC1IF) return RCREG;
     else return 0;
