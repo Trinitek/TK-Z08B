@@ -63,6 +63,9 @@
 #define memrqTris           TRISCbits.TRISC3
 #define busrqTris           TRISEbits.TRISE1
 #define busackTris          TRISEbits.TRISE2
+#define ramEnableTris       TRISBbits.TRISB2
+#define m1Tris              TRISBbits.TRISB1
+#define cpuResetTris        TRISBbits.TRISB0
 
     // outgoing
 #define cpuClockOutput      LATEbits.LATE0
