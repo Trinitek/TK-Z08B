@@ -71,6 +71,7 @@
 #define cpuClockOutput      LATEbits.LATE0
 #define intOutput           LATCbits.LATC0
 #define busrqOutput         LATEbits.LATE1
+#define cpuResetOutput      LATBbits.LATB0
 
     // incoming
 #define readInput           PORTCbits.RC5
@@ -80,6 +81,9 @@
 #define iorqInput           PORTCbits.RC2
 #define memrqInput          PORTCbits.RC3
 #define busackInput         PORTEbits.RE2
+#define ramEnableInput      PORTBbits.RB2
+#define m1Input             PORTBbits.RB1
+#define cpuResetInput       PORTBbits.RB0
 
 /* STATUS INDICATOR CONFIGURATION */
     // direction
