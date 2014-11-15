@@ -15,3 +15,4 @@ bool framingError(void);
 bool overrunError(void);
 
 void wait_ms(uint16_t time);
+void binToString(uint8_t number, uint8_t string[]);

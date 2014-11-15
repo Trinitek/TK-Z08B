@@ -214,3 +214,18 @@ void wait_ms(uint16_t time) {
     timel = time * 10;
     for (; timel; timel--);
 }
+
+/**
+ * Convert the given byte to a binary-formatted string
+ * @param number - byte to convert
+ * @param string - destination string, should be at least 8 chars long
+ */
+void binToString(uint8_t number, uint8_t string[]) {
+    uint8_t numberBit = 0b0000001;
+    int8_t index = 7;
+
+    for (; index >= 0; index--) {
+        (number & numberBit) ? (string[index] = '1') : (string[index] = '0');
+        numberBit = numberBit << 1;
+    }
+}
