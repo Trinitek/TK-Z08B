@@ -31,7 +31,7 @@ void main(void) {
 
     while(true) {
         // Display CPU clock state
-        (cpuClockOutput) ? (sendChar('i')) : (sendChar('o'));
+        (cpuClockOutput) ? (sendChar('I')) : (sendChar('O'));
         sendChar(' ');
 
         // Dispaly HALT state
@@ -39,7 +39,7 @@ void main(void) {
         sendChar(' ');
 
         // Display M1 state
-        (m1Input) ? (sendChar('m')) : (sendChar('-'));
+        (m1Input) ? (sendChar('1')) : (sendChar('-'));
         sendChar(' ');
 
         // Display MEMRQ state
@@ -55,7 +55,24 @@ void main(void) {
         sendChar(' ');
 
         // Display BUSRQ state
-        //(bus)
+        (busrqInput) ? (sendChar('u')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display BUSACK state
+        (busackInput) ? (sendChar('a')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display RD state
+        (readInput) ? (sendChar('R')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display WR state
+        (writeInput) ? (sendChar('W')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display memory CE state
+        (ramEnableInput) ? (sendChar('C')) : (sendChar('-'));
+        sendChar(' ');
 
         // Display low byte of address bus
         binToString(addressBusInput, addrString);
