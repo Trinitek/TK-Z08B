@@ -97,6 +97,7 @@ void initPorts(void) {
     iorqTris = in;
     memrqTris = in;
     busackTris = in;
+    ramEnableTris = in;
 
     // setup starting output data
     cpuClockOutput = 0;

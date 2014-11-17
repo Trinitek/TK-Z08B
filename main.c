@@ -29,7 +29,13 @@ void main(void) {
 
     sendString(welcome);
 
+    //dataBusOutput = 0xC3;   // jump 0xC3C3
+    dataBusOutput = 0x76;   // halt
+
     while(true) {
+        if (ramEnableInput || !writeInput) dataBusTris = 1;
+        else dataBusTris = 0;
+
         // Display CPU clock state
         (cpuClockOutput) ? (sendChar('I')) : (sendChar('O'));
         sendChar(' ');
