@@ -92,7 +92,7 @@ void initPorts(void) {
     busrqTris = out;
     readTris = in;
     writeTris = in;
-    waitTris = in;
+    waitTris = out;
     haltTris = in;
     iorqTris = in;
     memrqTris = in;
@@ -102,6 +102,7 @@ void initPorts(void) {
     cpuClockOutput = 0;
     intOutput = 1;
     busrqOutput = 1;
+    waitOutput = 1;
 
     // initialize TRISbits for status indicators
     eepromLedTris = out;

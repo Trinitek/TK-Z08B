@@ -35,39 +35,39 @@ void main(void) {
         sendChar(' ');
 
         // Dispaly HALT state
-        (haltInput) ? (sendChar('h')) : (sendChar('-'));
+        (!haltInput) ? (sendChar('h')) : (sendChar('-'));
         sendChar(' ');
 
         // Display M1 state
-        (m1Input) ? (sendChar('1')) : (sendChar('-'));
+        (!m1Input) ? (sendChar('1')) : (sendChar('-'));
         sendChar(' ');
 
         // Display MEMRQ state
-        (memrqInput) ? (sendChar('r')) : (sendChar('-'));
+        (!memrqInput) ? (sendChar('r')) : (sendChar('-'));
         sendChar(' ');
 
         // Display IORQ state
-        (iorqInput) ? (sendChar('q')) : (sendChar('-'));
+        (!iorqInput) ? (sendChar('q')) : (sendChar('-'));
         sendChar(' ');
 
         // Display WAIT state
-        (waitInput) ? (sendChar('w')) : (sendChar('-'));
+        (!waitInput) ? (sendChar('w')) : (sendChar('-'));
         sendChar(' ');
 
         // Display BUSRQ state
-        (busrqInput) ? (sendChar('u')) : (sendChar('-'));
+        (!busrqInput) ? (sendChar('u')) : (sendChar('-'));
         sendChar(' ');
 
         // Display BUSACK state
-        (busackInput) ? (sendChar('a')) : (sendChar('-'));
+        (!busackInput) ? (sendChar('a')) : (sendChar('-'));
         sendChar(' ');
 
         // Display RD state
-        (readInput) ? (sendChar('R')) : (sendChar('-'));
+        (!readInput) ? (sendChar('R')) : (sendChar('-'));
         sendChar(' ');
 
         // Display WR state
-        (writeInput) ? (sendChar('W')) : (sendChar('-'));
+        (!writeInput) ? (sendChar('W')) : (sendChar('-'));
         sendChar(' ');
 
         // Display memory CE state

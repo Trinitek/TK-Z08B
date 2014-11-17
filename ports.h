@@ -72,6 +72,7 @@
 #define intOutput           LATCbits.LATC0
 #define busrqOutput         LATEbits.LATE1
 #define cpuResetOutput      LATBbits.LATB0
+#define waitOutput          LATBbits.LATB4
 
     // incoming
 #define readInput           PORTCbits.RC5
