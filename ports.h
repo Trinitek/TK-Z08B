@@ -80,6 +80,7 @@
 #define haltInput           PORTCbits.RC1
 #define iorqInput           PORTCbits.RC2
 #define memrqInput          PORTCbits.RC3
+#define busrqInput          PORTEbits.RE1
 #define busackInput         PORTEbits.RE2
 #define ramEnableInput      PORTBbits.RB2
 #define m1Input             PORTBbits.RB1

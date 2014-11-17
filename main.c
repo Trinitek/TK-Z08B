@@ -8,7 +8,7 @@ void main(void) {
 
     initPorts();
     initOscillator();
-    initInterrupts();
+    //initInterrupts();
     initSerial();
     initCpuClock();
     
@@ -30,13 +30,47 @@ void main(void) {
     sendString(welcome);
 
     while(true) {
+        // Display CPU clock state
+        (cpuClockOutput) ? (sendChar('i')) : (sendChar('o'));
+        sendChar(' ');
+
+        // Dispaly HALT state
+        (haltInput) ? (sendChar('h')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display M1 state
+        (m1Input) ? (sendChar('m')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display MEMRQ state
+        (memrqInput) ? (sendChar('r')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display IORQ state
+        (iorqInput) ? (sendChar('q')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display WAIT state
+        (waitInput) ? (sendChar('w')) : (sendChar('-'));
+        sendChar(' ');
+
+        // Display BUSRQ state
+        //(bus)
+
+        // Display low byte of address bus
         binToString(addressBusInput, addrString);
         sendString(addrString);
         sendChar(' ');
-        //binToString(dataBusInput, dataString);
-        //sendString(dataString);
-        //sendSerial(0x0D);
+
+        // Display data bus
+        binToString(dataBusInput, dataString);
+        sendString(dataString);
+        sendChar(0x0D);
+        
+        // Toggle clock output
+        cpuClockOutput = !cpuClockOutput;
+
+        // Toggle LED output
         eepromLed = !eepromLed;
-        //sendSerial('A');
     }
 }
