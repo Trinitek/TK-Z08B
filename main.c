@@ -24,14 +24,19 @@ void main(void) {
 
     uint8_t addrString[9];
     addrString[8] = 0;
-
-    uint8_t linefeed[] = { 0x0D,0 };
+    uint8_t dataString[9];
+    dataString[8] = 0;
 
     sendString(welcome);
 
     while(true) {
         binToString(addressBusInput, addrString);
         sendString(addrString);
-        sendString(linefeed);
+        sendChar(' ');
+        //binToString(dataBusInput, dataString);
+        //sendString(dataString);
+        //sendSerial(0x0D);
+        eepromLed = !eepromLed;
+        //sendSerial('A');
     }
 }

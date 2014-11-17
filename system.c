@@ -163,13 +163,21 @@ bool sendSerial(uint8_t character) {
 }
 
 /**
+ * Force send an 8-bit character over RS-232
+ * @param character
+ */
+void sendChar(uint8_t character) {
+    while (!sendSerial(character));
+}
+
+/**
  * Send a string of 8-bit characters over RS-232
  * @param string - array of characters
  */
 void sendString(uint8_t string[]) {
     int i = 0;
     while(string[i] != 0) {
-        while(sendSerial(string[i]) == 0);
+        sendChar(string[i]);
         i++;
     }
 }
