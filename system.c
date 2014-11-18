@@ -81,10 +81,10 @@ void initPorts(void) {
     ANSELE = 0;
 
     // initialize TRISbits for address bus
-    addressBusTris = in;
+    addressBusTris = 0xFF;
 
     // initialize TRISbits for data bus
-    dataBusTris = out;
+    dataBusTris = 0x00;
 
     // initialize TRISbits for control ports
     cpuClockTris = out;

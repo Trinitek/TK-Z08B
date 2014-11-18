@@ -4,6 +4,8 @@
 #include "system.h"
 #include "ports.h"
 
+void displayAddress(void);
+
 void main(void) {
 
     initPorts();
@@ -30,7 +32,8 @@ void main(void) {
     sendString(welcome);
 
     //dataBusOutput = 0xC3;   // jump 0xC3C3
-    dataBusOutput = 0x76;   // halt
+    //dataBusOutput = 0x76;   // halt
+    dataBusOutput = 0x00;   // nop
 
     while(true) {
         if (ramEnableInput || !writeInput) dataBusTris = 1;
