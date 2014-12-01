@@ -21,7 +21,7 @@ void main(void) {
     char welcome[] =
         "\n\n"
         "TK-Z08B Computer BIOS Controller\n"
-        "Software version 0.2-16NOV2014\n"
+        "Software version 0.3-1DEC2014\n"
         "Controller: 8 MHz | CPU: 2 MHz\n"
         "Serial: 2400 baud\n"
         "\n";
