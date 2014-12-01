@@ -1,3 +1,4 @@
+
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -13,7 +14,6 @@ void main(void) {
     //initInterrupts();
     initSerial();
     initCpuClock();
-    
     enableCpuClock();
 
     char welcome[] =
@@ -35,7 +35,9 @@ void main(void) {
     //dataBusOutput = 0x76;   // halt
     //dataBusOutput = 0x00;   // nop
 
-    while(true) {
+    //while (true);
+
+    while (true) {
         if (ramEnableInput || !writeInput) dataBusTris = 0xFF;
         else dataBusTris = 0x00;
 
@@ -92,7 +94,7 @@ void main(void) {
         binToString(dataBusInput, dataString);
         sendString(dataString);
         sendChar(0x0D);
-        
+
         // Toggle clock output
         cpuClockOutput = !cpuClockOutput;
 
