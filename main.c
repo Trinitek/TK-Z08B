@@ -5,6 +5,7 @@
 #include "system.h"
 #include "ports.h"
 #include "serial.h"
+#include "device.h"
 
 void displayAddress(void);
 
@@ -12,7 +13,7 @@ void main(void) {
 
     initPorts();
     initOscillator();
-    //initInterrupts();
+    initInterrupts();
     initSerial();
     initCpuClock();
     enableCpuClock();
@@ -30,76 +31,23 @@ void main(void) {
     uint8_t dataString[9];
     dataString[8] = 0;
 
+    uint8_t program[] = {
+        0x21, 0x0F, 0x00, 0x7E, 0xFE, 0x00, 0xCA, 0x00, 0x00, 0xD3, 0x02, 0x23, 0xC3, 0x03, 0x00, 0x48,
+        0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x77, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0x20, 0x00
+    };
+
     sendString(welcome);
 
-    //dataBusOutput = 0xC3;   // jump 0xC3C3
-    //dataBusOutput = 0x76;   // halt
-    //dataBusOutput = 0x00;   // nop
+    while (true) {
 
-    while (true);
+        // If #WR or CE is active, switch databus to input
+        if (ramEnableInput || !writeInput) dataBusTris = 0xFF;
+        else dataBusTris = 0x00;
 
-//    while (true) {
-//        if (ramEnableInput || !writeInput) dataBusTris = 0xFF;
-//        else dataBusTris = 0x00;
-//
-//        // Display CPU clock state
-//        (cpuClockOutput) ? (sendChar('I')) : (sendChar('O'));
-//        sendChar(' ');
-//
-//        // Dispaly HALT state
-//        (!haltInput) ? (sendChar('h')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display M1 state
-//        (!m1Input) ? (sendChar('1')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display MEMRQ state
-//        (!memrqInput) ? (sendChar('r')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display IORQ state
-//        (!iorqInput) ? (sendChar('q')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display WAIT state
-//        (!waitInput) ? (sendChar('w')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display BUSRQ state
-//        (!busrqInput) ? (sendChar('u')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display BUSACK state
-//        (!busackInput) ? (sendChar('a')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display RD state
-//        (!readInput) ? (sendChar('R')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display WR state
-//        (!writeInput) ? (sendChar('W')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display memory CE state
-//        (ramEnableInput) ? (sendChar('C')) : (sendChar('-'));
-//        sendChar(' ');
-//
-//        // Display low byte of address bus
-//        binToString(addressBusInput, addrString);
-//        sendString(addrString);
-//        sendChar(' ');
-//
-//        // Display data bus
-//        binToString(dataBusInput, dataString);
-//        sendString(dataString);
-//        sendChar(0x0D);
-//
-//        // Toggle clock output
-//        cpuClockOutput = !cpuClockOutput;
-//
-//        // Toggle LED output
-//        eepromLed = !eepromLed;
-//    }
+        // If #WR and #IORQ are active, send data to device handler
+        if (!writeInput || !iorqInput) writeDevice(dataBusInput, addressBusInput);
+
+        // Write to databus latches regardless of the TRIS status
+        dataBusOutput = program[addressBusInput];
+    }
 }
