@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "memory.h"
+#include "serial.h"
 
 // input to CPU
     // interrupt code
@@ -53,6 +54,8 @@ uint8_t readDevice(uint8_t port) {
 bool writeDevice(uint8_t byte, uint8_t port) {
     switch(port) {
         default: return false;
+        case serialByteOut:
+            return sendSerial(byte);
         case eepromAddrOut:
             if (eepromAddrSelect % 2 == 0) {
                 eepromAddrSelect++;
